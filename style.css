@@ -1,0 +1,95 @@
+:root {
+  --bg: #0b0b0f;
+  --red: #e84b4b;
+  --text: #eaeaf0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: var(--bg);
+  display: grid;
+  place-items: center;
+  font-family: monospace;
+  color: var(--text);
+}
+
+.screen {
+  text-align: center;
+}
+
+.game-over {
+  font-size: 2.5rem;
+  letter-spacing: 0.2em;
+  margin-bottom: 2rem;
+}
+
+.hearts {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.heart {
+  width: 25px;
+  height: 25px;
+  background: var(--red);
+  image-rendering: pixelated;
+  clip-path: polygon(
+    25% 0%,
+    50% 25%,
+    75% 0%,
+    100% 25%,
+    100% 50%,
+    50% 100%,
+    0% 50%,
+    0% 25%
+  );
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+/* Cat silhouette (pixel-ish, abstract) */
+.cat {
+  width: 220px;
+  margin: 0 auto 2rem;
+  border-radius: 10px;
+  opacity: 0;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.15));
+  animation: breathe 3s ease-in-out infinite;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.cat:not(.hidden) {
+  opacity: 1;
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+.final-line {
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
